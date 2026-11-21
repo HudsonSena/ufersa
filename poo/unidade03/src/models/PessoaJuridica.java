@@ -5,15 +5,17 @@ public class PessoaJuridica extends Cliente {
     private String razaoSocial;
     private String tipoOrgao;
 
-    public PessoaJuridica(int id, String nome, String endereco, String telefone, String email, String cpf, String tipoCliente, String cnpj, String razaoSocial, String tipoOrgao) {
-        super(nome, endereco, telefone, email, cpf, tipoCliente);
+    public PessoaJuridica(int id, String nome, String endereco, String telefone, String email, String cpf, String tipoCliente, String cnpj, String tipoOrgao) {
+        super(id, nome, endereco, telefone, email, cpf, tipoCliente);
         this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
+        this.razaoSocial = nome;
         this.tipoOrgao = tipoOrgao;
     }
 
-    public void atualizarEmpresa(String cnpj) {
+    public void atualizarEmpresa(String cnpj, String razaoSocial, String tipoOrgao) {
         this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.tipoOrgao = tipoOrgao;
     }
 
     public void validarCNPJ() {

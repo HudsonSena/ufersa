@@ -5,19 +5,22 @@ public class Veiculo {
     private String marca;
     private String placa;
     private int ano;
+    private int id;
 
-    public Veiculo(String modelo, String marca, String placa, int ano) {
+    public Veiculo(int id, String modelo, String marca, String placa, int ano) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
         this.ano = ano;
+        this.id = id;
     }
 
-    public void atualizarDados(String modelo, String marca, String placa, int ano) {
+    public void atualizarDados(int id, String modelo, String marca, String placa, int ano) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
         this.ano = ano;
+        this.id = id;
     }
 
     public void consultarVeiculo() {

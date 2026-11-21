@@ -2,9 +2,11 @@ package poo.unidade03.src.models;
 
 public class Forncedor extends Pessoa {
     private String cnpj;
+    private int id;
 
     public Forncedor(String nome, String endereco, String telefone, String email, String cpf, String cnpj) {
         super(nome, endereco, telefone, email, cpf);
+        this.id = id;
         this.cnpj = cnpj;
     }
 

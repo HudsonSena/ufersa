@@ -5,14 +5,16 @@ import java.util.Scanner;
 public class Validacoes {
     static Scanner entrada = new Scanner(System.in);
 
-    // Nome: apenas letras (com acento) e espacos, minimo de 3 caracteres
     public static boolean nomeValido(String nome) {
         return nome.matches("[\\p{L} ]{3,}");
     }
 
-    // Email: texto@dominio.extensao
     public static boolean emailValido(String email) {
         return email.matches("[\\w.-]+@[\\w-]+(\\.[\\w-]+)+");
+    }
+
+    public static boolean telefoneValido(String telefone) {
+        return telefone.matches("^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$");
     }
 
     public static boolean cpfValido(String cpf) {
@@ -21,6 +23,22 @@ public class Validacoes {
 
     public static boolean cnpjValido(String cnpj) {
         return cnpj.matches("\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}");
+    }
+
+    public static boolean numeroValido(String numero) {
+        return numero.matches("\\d+");
+    }
+
+    public static int lerNumero() {
+        String numero = entrada.nextLine().trim();
+
+        while (!numero.matches("\\d+")) {
+            System.err.println("Valor inválido! Digite apenas números inteiros.");
+            System.out.print("Digite uma opção: ");
+            numero = entrada.nextLine().trim();
+        }
+
+        return Integer.parseInt(numero);
     }
 
     public static String lerNome() {
@@ -34,8 +52,40 @@ public class Validacoes {
         return nome;
     }
 
-    // Pede o email ate ser valido
-    static String lerEmail() {
+    public static String lerUsername() {
+        System.out.print("Username: ");
+        String username = entrada.nextLine().trim();
+        while (!nomeValido(username)) {
+            System.err.println("Username invalido. Use no mínimo 3 caracteres.");
+            System.out.print("Username: ");
+            username = entrada.nextLine().trim();
+        }
+        return username;
+    }
+
+    public static String lerPassword() {
+        System.out.print("Password: ");
+        String password = entrada.nextLine().trim();
+        while (!nomeValido(password)) {
+            System.err.println("Senha invalida. Mínino de 3 caracteres.");
+            System.out.print("Nome: ");
+            password = entrada.nextLine().trim();
+        }
+        return password;
+    }
+
+    public static String lerEndereco() {
+        System.out.print("Endereco: ");
+        String nome = entrada.nextLine().trim();
+        while (!nomeValido(nome)) {
+            System.err.println("Endereco invalido. Use apenas letras.");
+            System.out.print("Endereco: ");
+            nome = entrada.nextLine().trim();
+        }
+        return nome;
+    }
+
+    public static String lerEmail() {
         System.out.print("Email: ");
         String email = entrada.nextLine().trim();
         while (!emailValido(email)) {
@@ -46,7 +96,18 @@ public class Validacoes {
         return email;
     }
 
-    static String lerCpf() {
+    public static String lerTelefone() {
+        System.out.print("Telefone: ");
+        String telefone = entrada.nextLine().trim();
+        while (!telefoneValido(telefone)) {
+            System.err.println("Telefone invalido. Exemplo: 999999999");
+            System.out.print("Telefone: ");
+            telefone = entrada.nextLine().trim();
+        }
+        return telefone;
+    }
+
+    public static String lerCpf() {
         System.out.print("CPF (Digite apenas números): ");
         String cpf = entrada.nextLine().trim();
         while (!cpfValido(cpf)) {
@@ -57,7 +118,7 @@ public class Validacoes {
         return cpf;
     }
 
-    static String lerCnpj() {
+    public static String lerCnpj() {
         System.out.print("CNPJ (Digite apenas números): ");
         String cpf = entrada.nextLine().trim();
         while (!cpfValido(cpf)) {
@@ -66,5 +127,29 @@ public class Validacoes {
             cpf = entrada.nextLine().trim();
         }
         return cpf;
+    }
+
+    public static String lerTipoCliente() {
+        String tipoCliente = "";
+        int tipo = -1;
+
+        while (tipo != 1 && tipo != 2) {
+            System.out.print("Digite o tipo de cliente, 1 (Pessoa física) ou 2 (Pessoa jurídica): ");
+            tipo = entrada.nextInt();
+            switch (tipo) {
+            case 1:
+                tipoCliente = "Pessoa física";                
+                break;
+            case 2:
+                tipoCliente = "Pessoa jurídica";
+                break;
+
+            default:
+                System.out.println("Tipo de cliente inválido. Por favor, digite 1 para Física ou 2 para Jurídica.");
+                throw new AssertionError();
+            }
+        }
+        entrada.nextLine();
+        return tipoCliente;
     }
 }

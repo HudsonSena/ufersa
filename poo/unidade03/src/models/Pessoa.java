@@ -1,15 +1,13 @@
 package poo.unidade03.src.models;
 
 public class Pessoa {
-    private int id;
     private String nome;
     private String endereco;
     private String telefone;
     private String email;
     private String cpf;
 
-    public Pessoa(int id, String nome, String endereco, String telefone, String email, String cpf) {
-        this.id = id;
+    public Pessoa(String nome, String endereco, String telefone, String email, String cpf) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -21,8 +19,7 @@ public class Pessoa {
         return nome;
     }
 
-    public void atualizarDados(int id, String nome, String endereco, String telefone, String email, String cpf) {
-        this.id = id;
+    public void atualizarDados(String nome, String endereco, String telefone, String email, String cpf) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -31,7 +28,6 @@ public class Pessoa {
     }
 
     public void consultarDados() {
-        System.out.println("ID: " + id);
         System.out.println("Nome: " + nome);
         System.out.println("Endereço: " + endereco);
         System.out.println("Telefone: " + telefone);
