@@ -1,6 +1,6 @@
 package poo.unidade03;
-
-import poo.unidade03.src.controllers.CadastroCliente;
+import poo.unidade03.src.controllers.CadastroUsuário;
+import poo.unidade03.src.controllers.Login;
 import poo.unidade03.src.controllers.Validacoes;
 
 public class Main {
@@ -22,7 +22,7 @@ public class Main {
                         break;
                     case 2:
                         System.out.println("Opção 2 selecionada: Consultar cliente");
-                        cadastrarUsuario.main(null);
+                        CadastroUsuário.main(null);
                         // Aqui você pode adicionar a lógica para consultar um cliente
                         break;
                     case 0:

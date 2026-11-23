@@ -6,8 +6,12 @@ public class Forncedor extends Pessoa {
 
     public Forncedor(String nome, String endereco, String telefone, String email, String cpf, String cnpj) {
         super(nome, endereco, telefone, email, cpf);
-        this.id = id;
         this.cnpj = cnpj;
+    }
+
+    public Forncedor(int id, String nome, String endereco, String telefone, String email, String cpf, String cnpj) {
+        this(nome, endereco, telefone, email, cpf, cnpj);
+        this.id = id;
     }
 
     public void fornecerProduto() {

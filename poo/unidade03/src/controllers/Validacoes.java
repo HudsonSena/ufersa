@@ -29,6 +29,14 @@ public class Validacoes {
         return numero.matches("\\d+");
     }
 
+    public static boolean senhaValida(String senha) {
+        return senha.matches("[a-zA-Z0-9]{5,}");
+    }
+
+    public static String lerOpcaoTexto() {
+        return entrada.nextLine().trim();
+    }
+
     public static int lerNumero() {
         String numero = entrada.nextLine().trim();
 
@@ -64,14 +72,14 @@ public class Validacoes {
     }
 
     public static String lerPassword() {
-        System.out.print("Password: ");
-        String password = entrada.nextLine().trim();
-        while (!nomeValido(password)) {
-            System.err.println("Senha invalida. Mínino de 3 caracteres.");
-            System.out.print("Nome: ");
-            password = entrada.nextLine().trim();
+        System.out.print("Senha: ");
+        String senha = entrada.nextLine().trim();
+        while (!senhaValida(senha)) {
+            System.err.println("Senha invalida. Mínino de 5 caracteres. Letras ou números");
+            System.out.print("Senha: ");
+            senha = entrada.nextLine().trim();
         }
-        return password;
+        return senha;
     }
 
     public static String lerEndereco() {

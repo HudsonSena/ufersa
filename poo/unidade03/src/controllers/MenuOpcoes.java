@@ -1,11 +1,7 @@
-package poo.unidade03;
-
-import poo.unidade03.src.controllers.CadastroCliente;
-import poo.unidade03.src.controllers.Validacoes;
+package poo.unidade03.src.controllers;
 
 public class MenuOpcoes {
     public static void main(String[] args) {
-        System.out.println("Bem-vindo ao sistema de estética automotiva!");
         int op = -1;
         
         while (op != 0) {
@@ -14,6 +10,9 @@ public class MenuOpcoes {
             System.out.println("2 - Consultar cliente");
             System.out.println("3 - Atualizar cliente");
             System.out.println("4 - Consultar ordens de serviço");
+            System.out.println("5 - Cadastrar funcionario");
+            System.out.println("6 - Cadastrar fornecedor");
+            System.out.println("7 - Cadastrar produto");
             System.out.println("0 - Sair");
             System.out.print("Digite a opção desejada: ");     
             try {
@@ -35,8 +34,17 @@ public class MenuOpcoes {
                         System.out.println("Opção 4 selecionada: Consultar ordens de serviço");
                         // Aqui você pode adicionar a lógica para consultar ordens de serviço
                         break;
+                    case 5:
+                        System.err.println("Opção 5 selecionada: Cadastrar Funionário");
+                        break;
+                    case 6:
+                        System.err.println("Opção 6 selecionada: Cadastrar Fornecedor");
+                        break;
+                    case 7:
+                        System.err.println("Opção 7 selecionada: Cadastrar produtos");
+                        break;
                     case 0:
-                        System.out.println("Saindo do sistema. Até logo!");
+                        System.out.println("Voltando para o login.");
                         break;
 
                     default:

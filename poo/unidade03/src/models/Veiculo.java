@@ -6,12 +6,18 @@ public class Veiculo {
     private String placa;
     private int ano;
     private int id;
+    private int idCliente;
 
-    public Veiculo(int id, String modelo, String marca, String placa, int ano) {
+    public Veiculo(String modelo, String marca, String placa, int ano, int idCliente) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
         this.ano = ano;
+        this.idCliente = idCliente;
+    }
+
+    public Veiculo(int id, String modelo, String marca, String placa, int ano, int idCliente) {
+        this(modelo, marca, placa, ano, idCliente);
         this.id = id;
     }
 

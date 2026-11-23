@@ -1,13 +1,14 @@
 package poo.unidade03.src.controllers;
-
-import poo.unidade03.src.models.Cliente;
+import poo.unidade03.src.models.Usuario;
 
 public class CadastroUsuário {
-    ublic static void main(String[] args) {
+    public static void main(String[] args) {
         String nome = Validacoes.lerNome();
-        String username = Validacoes.lerEndereco();
+        String username = Validacoes.lerUsername();
+        String email = Validacoes.lerEmail();
         String password = Validacoes.lerPassword();
-        Usuario usuario = new Usuario(nome, username, password);
+
+        Usuario usuario = new Usuario(nome, username, email, password);
 
         usuario.consultarDados();
 
