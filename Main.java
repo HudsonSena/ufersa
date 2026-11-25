@@ -1,10 +1,11 @@
-package poo.unidade03;
-import poo.unidade03.src.controllers.CadastroUsuário;
-import poo.unidade03.src.controllers.Login;
-import poo.unidade03.src.controllers.Validacoes;
+import controllers.CadastroUsuario;
+import controllers.Login;
+import controllers.Validacoes;
+import database.criarBanco;
 
 public class Main {
     public static void main(String[] args) {
+        criarBanco.main(null);
         System.out.println("Bem-vindo ao sistema de estética automotiva!");
         int op = -1;
         
@@ -21,8 +22,8 @@ public class Main {
                         Login.main(null);
                         break;
                     case 2:
-                        System.out.println("Opção 2 selecionada: Consultar cliente");
-                        CadastroUsuário.main(null);
+                        System.out.println("Cadastrar usuario");
+                        CadastroUsuario.main(null);
                         // Aqui você pode adicionar a lógica para consultar um cliente
                         break;
                     case 0:

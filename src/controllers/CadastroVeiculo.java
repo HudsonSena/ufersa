@@ -1,6 +1,6 @@
-package poo.unidade03.src.controllers;
+package controllers;
 import java.util.Scanner;
-import poo.unidade03.src.models.Veiculo;
+import models.Veiculo;
 
 public class CadastroVeiculo {
     static Scanner entrada = new Scanner(System.in);

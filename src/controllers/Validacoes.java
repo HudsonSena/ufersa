@@ -1,4 +1,4 @@
-package poo.unidade03.src.controllers;
+package controllers;
 
 import java.util.Scanner;
 

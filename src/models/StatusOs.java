@@ -1,4 +1,4 @@
-package poo.unidade03.src.models;
+package models;
 
 public enum StatusOs {
     ABERTA,

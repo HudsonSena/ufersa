@@ -1,4 +1,6 @@
-package poo.unidade03.src.models;
+package models;
+
+import models.Pessoa;
 
 public class Cliente extends Pessoa {
     private String tipoCliente;

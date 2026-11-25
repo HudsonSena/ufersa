@@ -1,4 +1,4 @@
-package poo.unidade03.src.controllers;
+package controllers;
 
 public class MenuOpcoes {
     public static void main(String[] args) {
@@ -9,10 +9,8 @@ public class MenuOpcoes {
             System.out.println("1 - Cadastrar cliente");
             System.out.println("2 - Consultar cliente");
             System.out.println("3 - Atualizar cliente");
-            System.out.println("4 - Consultar ordens de serviço");
-            System.out.println("5 - Cadastrar funcionario");
-            System.out.println("6 - Cadastrar fornecedor");
-            System.out.println("7 - Cadastrar produto");
+            System.out.println("4 - Listar clientes");
+            System.out.println("5 - Consultar ordens de serviço");
             System.out.println("0 - Sair");
             System.out.print("Digite a opção desejada: ");     
             try {
@@ -31,17 +29,11 @@ public class MenuOpcoes {
                         // Aqui você pode adicionar a lógica para atualizar um cliente
                         break;
                     case 4:
-                        System.out.println("Opção 4 selecionada: Consultar ordens de serviço");
+                        System.out.println("Opção 4 selecionada: Listar clientes");
                         // Aqui você pode adicionar a lógica para consultar ordens de serviço
                         break;
                     case 5:
-                        System.err.println("Opção 5 selecionada: Cadastrar Funionário");
-                        break;
-                    case 6:
-                        System.err.println("Opção 6 selecionada: Cadastrar Fornecedor");
-                        break;
-                    case 7:
-                        System.err.println("Opção 7 selecionada: Cadastrar produtos");
+                        System.err.println("Opção 5 selecionada: Consultar ordens de serviço");
                         break;
                     case 0:
                         System.out.println("Voltando para o login.");

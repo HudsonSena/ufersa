@@ -1,7 +1,8 @@
-package poo.unidade03.src.controllers;
-import poo.unidade03.src.models.Usuario;
+package controllers;
 
-public class CadastroUsuário {
+import models.Usuario;
+
+public class CadastroOrdem {
     public static void main(String[] args) {
         String nome = Validacoes.lerNome();
         String username = Validacoes.lerUsername();
@@ -13,5 +14,5 @@ public class CadastroUsuário {
         usuario.consultarDados();
 
         System.out.println("Usuario cadastrado com sucesso!");
-    }        
+    } 
 }

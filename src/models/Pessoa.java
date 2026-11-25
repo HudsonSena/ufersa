@@ -1,4 +1,4 @@
-package poo.unidade03.src.models;
+package models;
 
 public class Pessoa {
     private String nome;

@@ -1,4 +1,6 @@
-package poo.unidade03.src.models;
+package models;
+
+import database.Banco;
 
 public class Usuario {
     private int id;
@@ -17,6 +19,11 @@ public class Usuario {
     public Usuario(int id, String nome, String username, String email, String password) {
         this(nome, username, email, password);
         this.id = id;
+    }
+
+    public boolean cadastrarUsuario(Banco db) {
+        String query = String.format("INSERT INTO usuarios (nome, username, email, password) VALUES ('%s', '%s', '%s', '%s')", nome, username, email, password);
+        return db.queryUpdate(query) > 0;
     }
     
     public void atualizar(int id, String nome, String username, String password) {

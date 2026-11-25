@@ -1,14 +1,14 @@
-package poo.unidade03.src.models;
+package models;
 
 public class Veiculo {
     private String modelo;
     private String marca;
     private String placa;
-    private int ano;
+    private String ano;
     private int id;
     private int idCliente;
 
-    public Veiculo(String modelo, String marca, String placa, int ano, int idCliente) {
+    public Veiculo(String modelo, String marca, String placa, String ano, int idCliente) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
@@ -16,12 +16,12 @@ public class Veiculo {
         this.idCliente = idCliente;
     }
 
-    public Veiculo(int id, String modelo, String marca, String placa, int ano, int idCliente) {
+    public Veiculo(int id, String modelo, String marca, String placa, String ano, int idCliente) {
         this(modelo, marca, placa, ano, idCliente);
         this.id = id;
     }
 
-    public void atualizarDados(int id, String modelo, String marca, String placa, int ano) {
+    public void atualizarDados(int id, String modelo, String marca, String placa, String ano) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;

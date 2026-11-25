@@ -1,6 +1,7 @@
-package poo.unidade03.src.controllers;
+package controllers;
 
-import poo.unidade03.src.models.Cliente;
+import models.Cliente;
+import controllers.Validacoes;
 
 public class CadastroCliente {
 
