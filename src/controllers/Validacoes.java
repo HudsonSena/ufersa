@@ -9,6 +9,10 @@ public class Validacoes {
         return nome.matches("[\\p{L} ]{3,}");
     }
 
+    public static boolean tituloValido(String titulo) {
+        return titulo.matches("[\\p{L} ]{3,}");
+    }
+
     public static boolean emailValido(String email) {
         return email.matches("[\\w.-]+@[\\w-]+(\\.[\\w-]+)+");
     }
@@ -29,6 +33,10 @@ public class Validacoes {
         return numero.matches("\\d+");
     }
 
+    public static boolean valorValido(String valor) {
+        return valor.matches("^(0|[1-9]\\d{0,2}(,\\d{3})*)(\\.\\d{2})?$");  
+    }
+
     public static boolean senhaValida(String senha) {
         return senha.matches("[a-zA-Z0-9]{5,}");
     }
@@ -41,12 +49,24 @@ public class Validacoes {
         String numero = entrada.nextLine().trim();
 
         while (!numero.matches("\\d+")) {
-            System.err.println("Valor inválido! Digite apenas números inteiros.");
+            System.err.println("Número inválido! Digite apenas números inteiros.");
             System.out.print("Digite uma opção: ");
             numero = entrada.nextLine().trim();
         }
 
         return Integer.parseInt(numero);
+    }
+
+    public static Double lerValor() {
+        String valor = entrada.nextLine().trim();
+
+        while (!valorValido(valor)) {
+            System.err.println("Valor inválido!");
+            System.out.print("Valor: ");
+            valor = entrada.nextLine().trim();
+        }
+
+        return Double.parseDouble(valor);
     }
 
     public static String lerNome() {
@@ -58,6 +78,17 @@ public class Validacoes {
             nome = entrada.nextLine().trim();
         }
         return nome;
+    }
+
+    public static String lerTitulo() {
+        System.out.print("Título: ");
+        String titulo = entrada.nextLine().trim();
+        while (!nomeValido(titulo)) {
+            System.err.println("Título invalido. Use apenas letras (minimo 3).");
+            System.out.print("Título: ");
+            titulo = entrada.nextLine().trim();
+        }
+        return titulo;
     }
 
     public static String lerUsername() {

@@ -14,7 +14,7 @@ public class CadastroVeiculo {
         System.out.println("Ano: ");
         int ano = entrada.nextInt();
 
-        Veiculo usuario = new Veiculo(modelo, marca, placa, ano, idCliente);
+        Veiculo usuario = new Veiculo(modelo, marca, placa, ano);
 
         usuario.consultarVeiculo();
 

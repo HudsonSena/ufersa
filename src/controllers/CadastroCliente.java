@@ -1,7 +1,7 @@
 package controllers;
 
+import database.Banco;
 import models.Cliente;
-import controllers.Validacoes;
 
 public class CadastroCliente {
 
@@ -12,10 +12,21 @@ public class CadastroCliente {
         String email = Validacoes.lerEmail();
         String cpf = Validacoes.lerCpf();
         String tipoCliente = Validacoes.lerTipoCliente();
-        Cliente cliente = new Cliente(nome, endereco, telefone, email, cpf, tipoCliente);
-
-        cliente.consultarDados();
-
-        System.out.println("Cliente cadastrado com sucesso!");
+        Banco db = new Banco();
+        
+        // Verifica se o e-mail já está cadastrado no banco
+        if (db.verificarCPFExistente(cpf)) {
+            System.err.println("Erro: Este CPF já está cadastrado no sistema. Por favor, tente outro.");
+            return;
+        }
+        
+        // Se não existir, prossegue com a senha e o cadastro
+        String password = Validacoes.lerPassword();
+        
+        if (new Cliente(nome, endereco, telefone, email, cpf, tipoCliente).cadastrarCliente(db)) {
+            System.out.println("Usuário cadastrado com sucesso!");
+        } else {
+            System.err.println("Erro ao cadastrar usuário.");
+        } 
     }
 }

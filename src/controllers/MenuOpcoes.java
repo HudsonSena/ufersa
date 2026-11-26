@@ -1,8 +1,5 @@
 package controllers;
 
-import controllers.Validacoes;
-import controllers.CadastroCliente;
-
 public class MenuOpcoes {
     public static void main(String[] args) {
         int op = -1;
@@ -20,8 +17,8 @@ public class MenuOpcoes {
                 op = Validacoes.lerNumero();
                 switch (op) {
                     case 1: 
-                    System.out.println("Opção 1 selecionada: Cadastrar cliente");
-                    CadastroCliente.main(null);
+                        System.out.println("Opção 1 selecionada: Cadastrar Ordem de Serviço e veículo");
+                        CadastroOrdem.main(null);
                         break;
                     case 2:
                         System.out.println("Opção 2 selecionada: Consultar cliente");

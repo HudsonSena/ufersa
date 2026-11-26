@@ -1,6 +1,6 @@
 package models;
 
-import models.Pessoa;
+import database.Banco;
 
 public class Cliente extends Pessoa {
     private String tipoCliente;
@@ -15,6 +15,11 @@ public class Cliente extends Pessoa {
     public Cliente(int id, String nome, String endereco, String telefone, String email, String cpf, String tipoCliente) {
         this(nome, endereco, telefone, email, cpf, tipoCliente);
         this.id = id;
+    }
+
+    public boolean cadastrarCliente(Banco db) {
+        String query = String.format("INSERT INTO clientes (nome, endereco, telefone, email, cpf, tipo_cliente) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", getNome(), getEndereco(), getTelefone(), getEmail(), getCpf(), tipoCliente);
+        return db.queryUpdate(query) > 0;
     }
 
     public void atualizarTipoCliente(String tipoCliente) {
@@ -43,5 +48,10 @@ public class Cliente extends Pessoa {
     @Override
     public String getNome() {
         return super.getNome();
+    }
+
+    @Override
+    public String getTelefone() {
+        return super.getTelefone();
     }
 }

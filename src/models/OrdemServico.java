@@ -5,32 +5,37 @@ import java.util.Date;
 
 public class OrdemServico {
     private int id;
-    private String nome;
+    private String titulo;
     private Date data;
     private StatusOs status;
     private Double valor;
     private String nomecliente;
-    private int idCliente;
-    private int idVeiculo;
+    private String cpf;;
 
-    public OrdemServico(String nome, Double valor, String nomecliente, int idCliente, int idVeiculo) {
-        this.nome = nome;
+    public OrdemServico(String titulo, Double valor, String nomecliente) {
+        this.titulo = titulo;
         this.status = StatusOs.ABERTA;
         this.valor = valor;
-        this.idCliente = idCliente;
-        this.idVeiculo = idVeiculo;
         this.nomecliente = nomecliente;
     }
 
-    public OrdemServico(int id, String nome, Date data, Double valor, String nomecliente, int idCliente, int idVeiculo) {
-        this(nome, valor, nomecliente, idCliente, idVeiculo);
+    public OrdemServico(String titulo, Double valor, String nomecliente, String cpf) {
+        this.titulo = titulo;
+        this.status = StatusOs.ABERTA;
+        this.valor = valor;
+        this.cpf = cpf;
+        this.nomecliente = nomecliente;
+    }
+
+    public OrdemServico(int id, String titulo, Date data, Double valor, String nomecliente, String cpf) {
+        this(titulo, valor, nomecliente, cpf);
         this.id = id;
         this.data = data;
     }
 
     public boolean cadastrarOrdem(Banco db) {
-        String query = String.format("INSERT INTO servicos (nome, data, status, valor, nome_cliente, id_cliente, id_veiculo) VALUES ('%s', 'CURRENT_TIMESTAMP', '%s', '%s', '%s', '%d', '%d')", 
-        nome, status, valor, nomecliente, idCliente, idVeiculo);
+        String query = String.format("INSERT INTO servicos (titulo, data, status, valor, nome_cliente, cpf) VALUES ('%s', 'CURRENT_TIMESTAMP', '%s', '%s', '%s', '%s')", 
+        titulo, status, valor, nomecliente, cpf);
         return db.queryUpdate(query) > 0;
     }
 
@@ -43,11 +48,11 @@ public class OrdemServico {
     }
 
     public void consultarOrdem() {
-        System.out.println("Nome: " + nome);
+        System.out.println("Nome: " + titulo);
         System.out.println("Data: " + data);
         System.out.println("Status: " + status);
         System.out.println("Valor: " + valor);
-        System.out.println("Id Cliente: " + idCliente);
+        System.out.println("CPF: " + cpf);
         System.out.println("Cliente: " + nomecliente);
 
     }

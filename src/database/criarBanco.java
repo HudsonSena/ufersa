@@ -26,19 +26,16 @@ public class criarBanco {
                 + "marca TEXT, "
                 + "placa TEXT, "
                 + "ano TEXT, "
-                + "id_cliente INTEGER, FOREIGN KEY (id_cliente) REFERENCES clientes(id))");
+                + "cpf TEXT)");
 
         db.queryUpdate("CREATE TABLE IF NOT EXISTS servicos ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "nome TEXT NOT NULL, "
+                + "titulo TEXT NOT NULL, "
                 + "data DATETIME, "
                 + "status TEXT, "
                 + "valor DECIMAL(10, 2), "
                 + "nome_cliente TEXT, "
-                + "id_cliente INTEGER, "
-                + "id_veiculo INTEGER, "
-                + "FOREIGN KEY (id_cliente) REFERENCES clientes(id), "                
-                + "FOREIGN KEY (id_veiculo) REFERENCES veiculos(id))");
+                + "cpf TEXT)");
     }
     
 }

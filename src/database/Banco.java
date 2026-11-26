@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import models.Cliente;
 
 public class Banco {
 
@@ -47,5 +48,53 @@ public class Banco {
             System.out.println("Erro no banco: " + e.getMessage());
             return null;
         }
+    }
+
+    public boolean verificarEmailExistente(String email) {
+        String query = "SELECT COUNT(*) AS total FROM usuarios WHERE email = '" + email + "'";
+        try {
+            ResultSet rs = querySearch(query);
+            if (rs != null && rs.next()) {
+                return rs.getInt("total") > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar e-mail: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean verificarCPFExistente(String cpf) {
+        String query = "SELECT COUNT(*) AS total FROM usuarios WHERE cpf = '" + cpf + "'";
+        try {
+            ResultSet rs = querySearch(query);
+            if (rs != null && rs.next()) {
+                return rs.getInt("total") > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar cpf: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public Cliente buscarClientePorCpf(String cpf) {
+        String query = "SELECT * FROM clientes WHERE cpf = '" + cpf + "'";
+        Cliente cliente = null;
+        
+        try {
+            ResultSet rs = querySearch(query);
+            if (rs != null && rs.next()) {
+                String nome = rs.getString("nome");
+                String endereco = rs.getString("endereco");
+                String telefone = rs.getString("telefone");
+                String email = rs.getString("email");
+                String tipoCliente = rs.getString("tipo_cliente");
+                
+                cliente = new Cliente(nome, endereco, telefone, email, cpf, tipoCliente);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar cliente por CPF: " + e.getMessage());
+        }
+        
+        return cliente;
     }
 }
