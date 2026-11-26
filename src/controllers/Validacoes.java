@@ -22,7 +22,7 @@ public class Validacoes {
     }
 
     public static boolean cpfValido(String cpf) {
-        return cpf.matches("\\d{14}");      
+        return cpf.matches("\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}");      
     }
 
     public static boolean cnpjValido(String cnpj) {
@@ -34,7 +34,7 @@ public class Validacoes {
     }
 
     public static boolean valorValido(String valor) {
-        return valor.matches("^(0|[1-9]\\d{0,2}(,\\d{3})*)(\\.\\d{2})?$");  
+        return valor.matches("^(?:R\\$\\s?)?(\\d{1,3}(?:\\.\\d{3})*|\\d+)(?:,\\d{2})?$");  
     }
 
     public static boolean senhaValida(String senha) {
@@ -58,16 +58,28 @@ public class Validacoes {
     }
 
     public static Double lerValor() {
-        System.out.print("Valor: ");
-        Double valor = entrada.nextDouble();
+        System.out.print("Valor(Ex: 1500,00): ");
+        String valorEntrada = entrada.nextLine().trim();
 
-        while (!valorValido(valor.toString())) {
+        while (!valorValido(valorEntrada)) {
             System.err.println("Valor inválido!");
             System.out.print("Valor: ");
-            valor = entrada.nextDouble();
+            valorEntrada = entrada.nextLine().trim();
         }
+        try {
+            // 1. Remove o "R$", espaços e os pontos de milhar (ex: "1.500,00" vira "1500,00")
+            String valorLimpo = valorEntrada.replace("R$", "").replace(" ", "").replace(".", "");
+            
+            // 2. Substitui a vírgula por ponto para o Java aceitar converter para Double (vira "1500.00")
+            valorLimpo = valorLimpo.replace(",", ".");
 
-        return valor;
+            // 3. Converte para Double para você salvar no banco e fazer cálculos
+            return Double.parseDouble(valorLimpo);
+            
+        } catch (NumberFormatException e) {
+            System.err.println("Erro ao converter o valor. Tente novamente.");
+            return lerValor(); // Recursão simples caso ocorra algum imprevisto na conversão
+        }
     }
 
     public static String lerNome() {
@@ -160,13 +172,13 @@ public class Validacoes {
 
     public static String lerCnpj() {
         System.out.print("CNPJ (Digite apenas números): ");
-        String cpf = entrada.nextLine().trim();
-        while (!cpfValido(cpf)) {
+        String cnpj = entrada.nextLine().trim();
+        while (!cnpjValido(cnpj)) {
             System.err.println("CNPJ invalido. Exemplo: 12345678912345");
             System.out.print("CNPJ (Digite apenas números): ");
-            cpf = entrada.nextLine().trim();
+            cnpj = entrada.nextLine().trim();
         }
-        return cpf;
+        return cnpj;
     }
 
     public static String lerOrgao() {

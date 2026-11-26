@@ -1,7 +1,6 @@
 package controllers;
 
 import database.Banco;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import controllers.Validacoes;
 import controllers.MenuOpcoes;
@@ -19,32 +18,20 @@ public class Login {
             String username = Validacoes.lerUsername();
             String password = Validacoes.lerPassword();
 
-            // Monta a query para buscar o usuário que tenha o username e a senha correspondentes
-            String query = String.format(
-                "SELECT * FROM usuarios WHERE username = '%s' AND password = '%s'", 
-                username, password
-            );
-
-            try {
                 // Executa a consulta no banco (supondo que seu objeto db possua um método queryRs ou similar que retorna ResultSet)
-                ResultSet rs = db.querySearch(query);
+                loginValido = db.validarLogin(username, password);
 
                 // Se houver próximo registro, significa que o usuário e a senha batem
-                if (rs != null && rs.next()) {
-                    loginValido = true;
+                if (loginValido) {
                     System.out.println("Login realizado com sucesso!");
                     MenuOpcoes.main(null);
                 } else {
                     System.err.println("Username ou senha incorretos!");
+                
+                    System.out.println("Digite 0 para sair ou qualquer outra tecla para tentar novamente.");
+                    op = Validacoes.lerOpcaoTexto();
                 }
-            } catch (SQLException e) {
-                System.err.println("Erro ao consultar o banco de dados: " + e.getMessage());
-            }
-
-            if (!loginValido) {
-                System.out.println("Digite 0 para sair ou qualquer outra tecla para tentar novamente.");
-                op = Validacoes.lerOpcaoTexto();
-            }
         }
+        db.desconectar();
     }
 }

@@ -44,11 +44,13 @@ public class CadastroOrdem {
                 } else {
                     System.out.println("Operação cancelada pelo usuário.");
                     entrada.close();
+                    db.desconectar();
                     return null;
                 }
             } else {
                 // Se não existe, pergunta se deseja cadastrar
                 System.out.println("Cliente não encontrado no sistema.");
+                db.desconectar();
                 System.out.println("Deseja cadastrar um novo cliente? 1 - Sim | 2 - Não");
                 
                 int cadastrarNovo = entrada.nextInt();
