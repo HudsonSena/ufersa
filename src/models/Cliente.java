@@ -1,6 +1,7 @@
 package models;
 
 import database.Banco;
+import models.Pessoa;
 
 public class Cliente extends Pessoa {
     private String tipoCliente;
@@ -39,6 +40,14 @@ public class Cliente extends Pessoa {
         this.tipoCliente = tipoCliente;
     }
 
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente() {
+        this.tipoCliente = tipoCliente;
+    }
+
     @Override
     public void consultarDados() {
         super.consultarDados();
@@ -54,4 +63,25 @@ public class Cliente extends Pessoa {
     public String getTelefone() {
         return super.getTelefone();
     }
+
+    @Override
+    public String getEndereco() {
+        return super.getEndereco();
+    }
+
+    @Override
+    public String getTelefone() {
+        return super.getTelefone();
+    }
+
+    @Override
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    @Override
+    public String getCpf() {
+        return super.getCpf();
+    }
+
 }

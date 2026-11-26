@@ -2,6 +2,9 @@ package controllers;
 
 import database.Banco;
 import models.Cliente;
+import controllers.Validacoes;
+import models.PessoaJuridica;
+import controllers.Validacoes;
 
 public class CadastroCliente {
 
@@ -10,23 +13,36 @@ public class CadastroCliente {
         String endereco = Validacoes.lerEndereco();
         String telefone = Validacoes.lerTelefone();
         String email = Validacoes.lerEmail();
-        String cpf = Validacoes.lerCpf();
         String tipoCliente = Validacoes.lerTipoCliente();
+        String cpf = "000000000";
+        String cnpj = "00000000000000";
+        String tipoOrgao = "Nenhum";
+
         Banco db = new Banco();
-        
-        // Verifica se o e-mail já está cadastrado no banco
-        if (db.verificarCPFExistente(cpf)) {
-            System.err.println("Erro: Este CPF já está cadastrado no sistema. Por favor, tente outro.");
-            return;
-        }
-        
-        // Se não existir, prossegue com a senha e o cadastro
-        String password = Validacoes.lerPassword();
-        
-        if (new Cliente(nome, endereco, telefone, email, cpf, tipoCliente).cadastrarCliente(db)) {
-            System.out.println("Usuário cadastrado com sucesso!");
+
+        if(tipoCliente == "Pessoa fisica") {
+            
+            cpf = Validacoes.lerCpf();
+
+            if (db.verificarCPFExistente(cpf)) {
+                System.err.println("Erro: Este CPF já está cadastrado no sistema. Por favor, tente outro.");
+                return;
+            }
+
+            if (new Cliente(nome, endereco, telefone, email, cpf, tipoCliente).cadastrarCliente(db)) {
+                System.out.println("Usuário cadastrado com sucesso!");
+            } else {
+                System.err.println("Erro ao cadastrar cliente.");
+            } 
+
         } else {
-            System.err.println("Erro ao cadastrar usuário.");
+            cnpj = Validacoes.lerCnpj();
+            tipoOrgao = Validacoes.lerOrgao();
+            if (new PessoaJuridica(nome, endereco, telefone, email, cpf, tipoCliente, cnpj, tipoOrgao).cadastrarClienteJu(db)) {
+                System.out.println("Usuário cadastrado com sucesso!");
+            } else {
+                System.err.println("Erro ao cadastrar cliente.");
+            }
         } 
     }
 }

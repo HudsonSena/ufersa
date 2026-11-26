@@ -18,7 +18,9 @@ public class criarBanco {
                 + "telefone TEXT, "
                 + "email TEXT UNIQUE NOT NULL, "
                 + "cpf TEXT UNIQUE, "
-                + "tipo_cliente TEXT)");
+                + "tipo_cliente TEXT, "
+                + "cnpj TEXT, "
+                + "tipo_orgao TEXT)");
 
         db.queryUpdate("CREATE TABLE IF NOT EXISTS veiculos ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "

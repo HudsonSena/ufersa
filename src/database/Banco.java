@@ -51,28 +51,34 @@ public class Banco {
     }
 
     public boolean verificarEmailExistente(String email) {
-        String query = "SELECT COUNT(*) AS total FROM usuarios WHERE email = '" + email + "'";
-        try {
-            ResultSet rs = querySearch(query);
-            if (rs != null && rs.next()) {
-                return rs.getInt("total") > 0;
-            }
+        String query = "SELECT 1 FROM usuarios WHERE email = '" + email + "'";
+        
+        try (java.sql.Statement stmtLocal = db.createStatement();
+            ResultSet rs = stmtLocal.executeQuery(query)) {
+            
+            return rs != null && rs.next();
+            
         } catch (SQLException e) {
             System.out.println("Erro ao verificar e-mail: " + e.getMessage());
         }
+        
         return false;
     }
 
     public boolean verificarCPFExistente(String cpf) {
-        String query = "SELECT COUNT(*) AS total FROM usuarios WHERE cpf = '" + cpf + "'";
-        try {
-            ResultSet rs = querySearch(query);
-            if (rs != null && rs.next()) {
-                return rs.getInt("total") > 0;
-            }
+        String query = "SELECT 1 FROM clientes WHERE cpf = '" + cpf + "'";
+        
+        // O try-with-resources garante que o Statement e o ResultSet fecham sozinhos aqui dentro
+        try (java.sql.Statement stmtLocal = db.createStatement();
+             ResultSet rs = stmtLocal.executeQuery(query)) {
+            
+            // Se rs.next() for verdadeiro, significa que encontrou o registro no banco
+            return rs != null && rs.next();
+            
         } catch (SQLException e) {
-            System.out.println("Erro ao verificar cpf: " + e.getMessage());
+            System.out.println("Erro ao verificar cliente por CPF: " + e.getMessage());
         }
+        
         return false;
     }
 
@@ -90,6 +96,7 @@ public class Banco {
                 String tipoCliente = rs.getString("tipo_cliente");
                 
                 cliente = new Cliente(nome, endereco, telefone, email, cpf, tipoCliente);
+                rs.close();
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar cliente por CPF: " + e.getMessage());

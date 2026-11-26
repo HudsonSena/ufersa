@@ -22,7 +22,7 @@ public class Validacoes {
     }
 
     public static boolean cpfValido(String cpf) {
-        return cpf.matches("\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}");      
+        return cpf.matches("\\d{14}");      
     }
 
     public static boolean cnpjValido(String cnpj) {
@@ -58,15 +58,16 @@ public class Validacoes {
     }
 
     public static Double lerValor() {
-        String valor = entrada.nextLine().trim();
+        System.out.print("Valor: ");
+        Double valor = entrada.nextDouble();
 
-        while (!valorValido(valor)) {
+        while (!valorValido(valor.toString())) {
             System.err.println("Valor inválido!");
             System.out.print("Valor: ");
-            valor = entrada.nextLine().trim();
+            valor = entrada.nextDouble();
         }
 
-        return Double.parseDouble(valor);
+        return valor;
     }
 
     public static String lerNome() {
@@ -168,6 +169,17 @@ public class Validacoes {
         return cpf;
     }
 
+    public static String lerOrgao() {
+        System.out.print("Tipo orgão: ");
+        String tipoOrgao = entrada.nextLine().trim();
+        while (!nomeValido(tipoOrgao)) {
+            System.err.println("Tipo orgao invalido. Apenas letras");
+            System.out.print("Tipo orgão: ");
+            tipoOrgao = entrada.nextLine().trim();
+        }
+        return tipoOrgao;
+    }
+
     public static String lerTipoCliente() {
         String tipoCliente = "";
         int tipo = -1;
@@ -177,10 +189,10 @@ public class Validacoes {
             tipo = entrada.nextInt();
             switch (tipo) {
             case 1:
-                tipoCliente = "Pessoa física";                
+                tipoCliente = "Pessoa fisica";                
                 break;
             case 2:
-                tipoCliente = "Pessoa jurídica";
+                tipoCliente = "Pessoa juridica";
                 break;
 
             default:

@@ -1,5 +1,7 @@
 package controllers;
 
+import poo.unidade03.src.controllers.CadastroCliente;
+
 public class MenuOpcoes {
     public static void main(String[] args) {
         int op = -1;
@@ -21,12 +23,12 @@ public class MenuOpcoes {
                         CadastroOrdem.main(null);
                         break;
                     case 2:
-                        System.out.println("Opção 2 selecionada: Consultar cliente");
-                        // Aqui você pode adicionar a lógica para consultar um cliente
+                        System.out.println("Opção 2 selecionada: Listar orden de serviço");
                         break;
                     case 3:
-                        System.out.println("Opção 3 selecionada: Atualizar cliente");
+                        System.out.println("Opção 3 selecionada: Cadastrar cliente");
                         // Aqui você pode adicionar a lógica para atualizar um cliente
+                        CadastroCliente.main(null);
                         break;
                     case 4:
                         System.out.println("Opção 4 selecionada: Listar clientes");
