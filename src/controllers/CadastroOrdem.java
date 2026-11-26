@@ -1,18 +1,21 @@
 package controllers;
-
-import models.Usuario;
+import database.Banco;
+import models.OrdemServico;
 
 public class CadastroOrdem {
     public static void main(String[] args) {
         String nome = Validacoes.lerNome();
-        String username = Validacoes.lerUsername();
-        String email = Validacoes.lerEmail();
-        String password = Validacoes.lerPassword();
+        Double valor = 48.00;
+        String nomecliente = Validacoes.lerNome();
+        int idCliente = 1;
+        int idVeiculo = 2;
+        Banco db = new Banco();
 
-        Usuario usuario = new Usuario(nome, username, email, password);
 
-        usuario.consultarDados();
-
-        System.out.println("Usuario cadastrado com sucesso!");
+        if(new OrdemServico(nome, valor, nomecliente, idCliente, idVeiculo).cadastrarOrdem(db)) {
+            System.out.println("Ordem cadastrada");
+        } else {
+            System.err.println("Error");
+        }
     } 
 }

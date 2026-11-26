@@ -34,6 +34,7 @@ public class criarBanco {
                 + "data DATETIME, "
                 + "status TEXT, "
                 + "valor DECIMAL(10, 2), "
+                + "nome_cliente TEXT, "
                 + "id_cliente INTEGER, "
                 + "id_veiculo INTEGER, "
                 + "FOREIGN KEY (id_cliente) REFERENCES clientes(id), "                
