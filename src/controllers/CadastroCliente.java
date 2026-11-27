@@ -2,9 +2,7 @@ package controllers;
 
 import database.Banco;
 import models.Cliente;
-import controllers.Validacoes;
 import models.PessoaJuridica;
-import controllers.Validacoes;
 
 public class CadastroCliente {
 
@@ -30,7 +28,7 @@ public class CadastroCliente {
             }
 
             if (new Cliente(nome, endereco, telefone, email, cpf, tipoCliente).cadastrarCliente(db)) {
-                System.out.println("Usuário cadastrado com sucesso!");
+                System.out.println("Cliente cadastrado com sucesso!");
             } else {
                 System.err.println("Erro ao cadastrar cliente.");
             } 

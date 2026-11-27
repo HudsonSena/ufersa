@@ -128,7 +128,7 @@ public class Banco {
     }
 
     public boolean verificarPlacaExistente(String placa, String cpf) {
-        String query = "SELECT 1 FROM veiculos WHERE placa = '" + placa + "' AND cpf = '" + cpf + "'";
+        String query = "SELECT 1 FROM veiculos WHERE placa = '" + placa + "' AND cpf_cliente = '" + cpf + "'";
         
         try (Statement stmtLocal = db.createStatement();
              ResultSet rs = stmtLocal.executeQuery(query)) {

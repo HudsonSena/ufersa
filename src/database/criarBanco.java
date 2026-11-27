@@ -28,17 +28,17 @@ public class criarBanco {
                 + "marca TEXT, "
                 + "placa TEXT, "
                 + "ano TEXT, "
-                + "cpf TEXT)");
+                + "cpf_cliente TEXT)");
 
         db.queryUpdate("CREATE TABLE IF NOT EXISTS servicos ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "titulo TEXT NOT NULL, "
-                + "data DATETIME, "
                 + "status TEXT, "
                 + "valor DECIMAL(10, 2), "
                 + "nome_cliente TEXT, "
                 + "cpf TEXT, "
-                + "placa TEXT)");
+                + "placa TEXT, "
+                + "data DATETIME)");
     }
     
 }

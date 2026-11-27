@@ -36,7 +36,7 @@ public class OrdemServico {
     }
 
     public boolean cadastrarOrdem(Banco db) {
-        String query = String.format("INSERT INTO servicos (titulo, data, status, valor, nome_cliente, cpf, placa_veiculo) VALUES ('%s', 'CURRENT_TIMESTAMP', '%s', '%s', '%s', '%s'. '%s')", 
+        String query = String.format("INSERT INTO servicos (titulo, status, valor, nome_cliente, cpf, placa, data) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 'CURRENT_TIMESTAMP')", 
         titulo, status, valor, nomecliente, cpf, placa);
         return db.queryUpdate(query) > 0;
     }

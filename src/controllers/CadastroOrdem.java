@@ -12,10 +12,6 @@ public class CadastroOrdem {
         Banco db = new Banco();
         String titulo = Validacoes.lerTitulo();
         Double valor = Validacoes.lerValor();
-        String placa = "00000";
-            
-        System.out.println("Digite a placa: ");
-        placa = entrada.nextLine();
         
         System.out.println("CPF na nota? 1 - Sim | 2 - Não");
         int op = entrada.nextInt();
@@ -26,6 +22,7 @@ public class CadastroOrdem {
         
         String cpf = "00000000000";
         String nomecliente = "Consumidor";
+        String placa = "000000";
 
         if (op == 1) {
             cpf = Validacoes.lerCpf();
@@ -43,6 +40,7 @@ public class CadastroOrdem {
                 int confirmar = entrada.nextInt();
                 if (confirmar == 1) {
                     nomecliente = clienteExistente.getNome();
+                    cpf = clienteExistente.getCpf();
                 } else {
                     System.out.println("Operação cancelada pelo usuário.");
                     entrada.close();
@@ -52,7 +50,6 @@ public class CadastroOrdem {
             } else {
                 // Se não existe, pergunta se deseja cadastrar
                 System.out.println("Cliente não encontrado no sistema.");
-                db.desconectar();
                 System.out.println("Deseja cadastrar um novo cliente? 1 - Sim | 2 - Não");
                 
                 int cadastrarNovo = entrada.nextInt();
@@ -63,6 +60,30 @@ public class CadastroOrdem {
                     nomecliente = Validacoes.lerNome(); // Apenas para a nota, se necessário
                 }
             }
+
+            int o = 0;
+            System.out.println("Cadastrar veículo? 1- sim | 2 - não");
+            o = entrada.nextInt();
+            entrada.nextLine();
+            while(o != 1 && o != 2) {
+                System.out.println("Opão inválida");
+                System.out.println("Cadastrar veículo? 1- sim | 2 - não");
+                o = entrada.nextInt();
+            }
+            if(o == 1){
+                System.out.println("Digite a placa: ");
+                placa = entrada.nextLine();
+
+                while(db.verificarPlacaExistente(placa, cpf)) {
+                    System.err.println("Erro: Este veículo ja está cadastrado.");
+                    System.out.println("Placa: ");
+                    placa = entrada.nextLine().trim();
+                    System.out.println("Continuar? 1- não | 2 - sim");
+                    o = entrada.nextInt();
+                }
+
+                CadastroVeiculo.main(cpf, placa, args);
+            }
         }
         
         // Cadastra a ordem de serviço
@@ -71,6 +92,7 @@ public class CadastroOrdem {
         } else {
             System.err.println("Erro ao cadastrar ordem.");
         }
+        
         return cpf;
     }
 }

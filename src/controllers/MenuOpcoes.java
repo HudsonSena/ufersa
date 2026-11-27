@@ -21,18 +21,8 @@ public class MenuOpcoes {
                 switch (op) {
                     case 1: 
                         System.out.println("Opção 1 selecionada: Cadastrar Ordem de Serviço e veículo");
-                        String cpf = CadastroOrdem.main(null);
-                        int o = 0;
-                        System.out.println("Cadastrar veículo? 1- sim | 2 - não");
-                        o = entrada.nextInt();
-                        while(o != 1 && o != 2) {
-                            System.out.println("Opão inválida");
-                            System.out.println("Cadastrar veículo? 1- sim | 2 - não");
-                            o = entrada.nextInt();
-                        }
-                        if(o == 1){
-                            CadastroVeiculo.main(cpf, args);
-                        }
+                        CadastroOrdem.main(null);
+                        
                         break;
                     case 2:
                         System.out.println("Opção 2 selecionada: Listar orden de serviço");
