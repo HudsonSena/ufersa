@@ -126,4 +126,19 @@ public class Banco {
         // Retorna o objeto 'cliente' preenchido ou 'null' se não encontrar.
         return cliente;
     }
+
+    public boolean verificarPlacaExistente(String placa, String cpf) {
+        String query = "SELECT 1 FROM veiculos WHERE placa = '" + placa + "' AND cpf = '" + cpf + "'";
+        
+        try (Statement stmtLocal = db.createStatement();
+             ResultSet rs = stmtLocal.executeQuery(query)) {
+            
+            return rs != null && rs.next();
+            
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar placa: " + e.getMessage());
+        }
+        
+        return false;
+    }
 }

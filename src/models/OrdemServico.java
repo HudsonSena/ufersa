@@ -10,7 +10,8 @@ public class OrdemServico {
     private StatusOs status;
     private Double valor;
     private String nomecliente;
-    private String cpf;;
+    private String cpf;
+    private String placa;
 
     public OrdemServico(String titulo, Double valor, String nomecliente) {
         this.titulo = titulo;
@@ -19,23 +20,24 @@ public class OrdemServico {
         this.nomecliente = nomecliente;
     }
 
-    public OrdemServico(String titulo, Double valor, String nomecliente, String cpf) {
+    public OrdemServico(String titulo, Double valor, String nomecliente, String cpf, String placa) {
         this.titulo = titulo;
         this.status = StatusOs.ABERTA;
         this.valor = valor;
         this.cpf = cpf;
+        this.placa = placa;
         this.nomecliente = nomecliente;
     }
 
-    public OrdemServico(int id, String titulo, Date data, Double valor, String nomecliente, String cpf) {
-        this(titulo, valor, nomecliente, cpf);
+    public OrdemServico(int id, String titulo, Date data, Double valor, String nomecliente, String cpf, String placa) {
+        this(titulo, valor, nomecliente, cpf, placa);
         this.id = id;
         this.data = data;
     }
 
     public boolean cadastrarOrdem(Banco db) {
-        String query = String.format("INSERT INTO servicos (titulo, data, status, valor, nome_cliente, cpf) VALUES ('%s', 'CURRENT_TIMESTAMP', '%s', '%s', '%s', '%s')", 
-        titulo, status, valor, nomecliente, cpf);
+        String query = String.format("INSERT INTO servicos (titulo, data, status, valor, nome_cliente, cpf, placa_veiculo) VALUES ('%s', 'CURRENT_TIMESTAMP', '%s', '%s', '%s', '%s'. '%s')", 
+        titulo, status, valor, nomecliente, cpf, placa);
         return db.queryUpdate(query) > 0;
     }
 

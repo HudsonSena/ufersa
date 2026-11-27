@@ -1,10 +1,11 @@
 package controllers;
 
-import poo.unidade03.src.controllers.CadastroCliente;
+import java.util.Scanner;
 
 public class MenuOpcoes {
+    static Scanner entrada = new Scanner(System.in);
     public static void main(String[] args) {
-        int op = -1;
+        int op = -1;        
         
         while (op != 0) {
             System.out.println("Escolha uma opção:");
@@ -20,7 +21,18 @@ public class MenuOpcoes {
                 switch (op) {
                     case 1: 
                         System.out.println("Opção 1 selecionada: Cadastrar Ordem de Serviço e veículo");
-                        CadastroOrdem.main(null);
+                        String cpf = CadastroOrdem.main(null);
+                        int o = 0;
+                        System.out.println("Cadastrar veículo? 1- sim | 2 - não");
+                        o = entrada.nextInt();
+                        while(o != 1 && o != 2) {
+                            System.out.println("Opão inválida");
+                            System.out.println("Cadastrar veículo? 1- sim | 2 - não");
+                            o = entrada.nextInt();
+                        }
+                        if(o == 1){
+                            CadastroVeiculo.main(cpf, args);
+                        }
                         break;
                     case 2:
                         System.out.println("Opção 2 selecionada: Listar orden de serviço");

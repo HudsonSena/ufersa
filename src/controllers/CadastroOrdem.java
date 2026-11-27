@@ -12,11 +12,13 @@ public class CadastroOrdem {
         Banco db = new Banco();
         String titulo = Validacoes.lerTitulo();
         Double valor = Validacoes.lerValor();
+        String placa = "00000";
+            
+        System.out.println("Digite a placa: ");
+        placa = entrada.nextLine();
         
         System.out.println("CPF na nota? 1 - Sim | 2 - Não");
         int op = entrada.nextInt();
-        
-        // Correção do loop: continua repetindo enquanto a opção não for nem 1 nem 2
         while (op != 1 && op != 2) {
             System.out.println("Digite um número válido (1 - Sim | 2 - Não):");
             op = entrada.nextInt();
@@ -64,7 +66,7 @@ public class CadastroOrdem {
         }
         
         // Cadastra a ordem de serviço
-        if (new OrdemServico(titulo, valor, nomecliente, cpf).cadastrarOrdem(db)) {
+        if (new OrdemServico(titulo, valor, nomecliente, cpf, placa).cadastrarOrdem(db)) {
             System.out.println("Ordem cadastrada com sucesso!");
         } else {
             System.err.println("Erro ao cadastrar ordem.");

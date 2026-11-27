@@ -37,7 +37,8 @@ public class criarBanco {
                 + "status TEXT, "
                 + "valor DECIMAL(10, 2), "
                 + "nome_cliente TEXT, "
-                + "cpf TEXT)");
+                + "cpf TEXT, "
+                + "placa TEXT)");
     }
     
 }

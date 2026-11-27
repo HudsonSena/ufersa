@@ -1,32 +1,40 @@
 package models;
 
+import database.Banco;
+
 public class Veiculo {
     private String modelo;
     private String marca;
     private String placa;
     private String ano;
     private int id;
-    private int idCliente;
+    private String cpfCliente;
 
-    public Veiculo(String modelo, String marca, String placa, String ano, int idCliente) {
+    public Veiculo(String modelo, String marca, String placa, String ano, String cpfCliente) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
         this.ano = ano;
-        this.idCliente = idCliente;
+        this.cpfCliente = cpfCliente;
     }
 
-    public Veiculo(int id, String modelo, String marca, String placa, String ano, int idCliente) {
-        this(modelo, marca, placa, ano, idCliente);
+    public Veiculo(int id, String modelo, String marca, String placa, String ano, String cpfCliente) {
+        this(modelo, marca, placa, ano, cpfCliente);
         this.id = id;
     }
 
-    public void atualizarDados(int id, String modelo, String marca, String placa, String ano) {
+    public boolean cadastrarVeiculo(Banco db) {
+        String query = String.format("INSERT INTO veiculos (modelo, marca, placa, ano, cpf_cliente) VALUES ('%s', '%s', '%s', '%s', '%s')", modelo, marca, placa, ano, cpfCliente);
+        return db.queryUpdate(query) > 0;
+    }
+
+    public void atualizarDados(int id, String modelo, String marca, String placa, String ano, String cpfCliente) {
         this.modelo = modelo;
         this.marca = marca;
         this.placa = placa;
         this.ano = ano;
         this.id = id;
+        this.cpfCliente = cpfCliente;
     }
 
     public void consultarVeiculo() {
@@ -34,6 +42,7 @@ public class Veiculo {
         System.out.println("Marca: " + marca);
         System.out.println("Placa: " + placa);
         System.out.println("Ano: " + ano);
+        System.out.println("CPF cliente: " + cpfCliente);
     }
 
     public void consultarOrdens() {
